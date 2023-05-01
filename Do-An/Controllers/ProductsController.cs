@@ -20,5 +20,12 @@ namespace Do_An.Controllers
             var products = await productsService.GetAllAsync(p => p.Category);
             return View(products);
         }
+
+        // GET: /Products/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var product = await productsService.GetProductByIdAsync(id);
+            return View(product);
+        }
     }
 }
