@@ -46,7 +46,7 @@ namespace Do_An.Controllers
             var category = await categoriesService.GetByIdAsync(id);
             if (category == null)
             {
-                return NotFound($"{id} is not valid");
+                return View("NotFound");
             }
             return View(category);
         }
@@ -56,7 +56,7 @@ namespace Do_An.Controllers
             var category = await categoriesService.GetByIdAsync(id);
             if (category == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
             return View(category);
         }
@@ -79,7 +79,7 @@ namespace Do_An.Controllers
             var category = await categoriesService.GetByIdAsync(id);
             if (category == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
             return View(category);
         }
@@ -89,7 +89,7 @@ namespace Do_An.Controllers
             var category = await categoriesService.GetByIdAsync(id);
             if (category == null)
             {
-                return NotFound();
+                return View("NotFound");
             }
             await categoriesService.DeleteAsync(id);
 
