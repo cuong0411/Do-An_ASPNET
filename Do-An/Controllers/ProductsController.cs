@@ -52,17 +52,32 @@ namespace Do_An.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProductDTO productDTO)
         {
-            if (productDTO.ImageFile != null)
+            if (!ModelState.IsValid)
             {
-                var fileName = productDTO.ImageFile.FileName;
-                var imagesFolder = Path.Combine(host.WebRootPath, "images");
-                var filePath = Path.Combine(imagesFolder, fileName);
-
-                productDTO.ImageFile.CopyTo(new FileStream(filePath, FileMode.Create));
-                productDTO.Image = fileName;
+                return View(productDTO);
             }
             
-            return View(productDTO);
+            // Save image to webrootpath
+            var fileName = productDTO.ImageFile.FileName;
+            var imagesFolder = Path.Combine(host.WebRootPath, "images");
+            var filePath = Path.Combine(imagesFolder, fileName);
+            productDTO.ImageFile.CopyTo(new FileStream(filePath, FileMode.Create));
+
+            // Save image path in database
+            productDTO.Image = Path.Combine("images", fileName);
+
+            // DTO => Domain
+            Product product = new()
+            {
+                Name = productDTO.Name,
+                Description = productDTO.Description,
+                Price = productDTO.Price,
+                Image = productDTO.Image,
+                CategoryId = productDTO.CategoryId,
+            };
+            await productsService.AddAsync(product);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
