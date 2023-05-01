@@ -14,9 +14,10 @@ namespace Do_An.Data.Services
         {
             this.appDbContext = appDbContext;
         }
-        public void Add(Category category)
+        public async Task Add(Category category)
         {
-            throw new System.NotImplementedException();
+            await appDbContext.Categories.AddAsync(category);
+            await appDbContext.SaveChangesAsync();
         }
 
         public void Delete(int id)

@@ -1,5 +1,6 @@
 ﻿using Do_An.Data;
 using Do_An.Data.Services;
+using Do_An.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -25,6 +26,18 @@ namespace Do_An.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("Name")] Category category)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
+            await categoriesService.Add(category);
+
+            // Trang danh sách category
+            return RedirectToAction(nameof(Index));
         }
     }
 }

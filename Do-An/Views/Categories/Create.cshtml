@@ -11,7 +11,6 @@
             <div class="col-10">
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                </form>
                 <div class="form-group text-center">
                     <img id="imagePreview" />
                 </div>
@@ -24,6 +23,7 @@
                     <input type="submit" value="Create" class="btn btn-outline-success float-right"/>
                     <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -31,7 +31,12 @@
 
 @section scripts{
     <script>
-        $("#imagePreview").on("Change", function () {
+        $(document).ready(function () {
+            const output = document.getElementById("imagePreview");
+            output.src = $(#imageURLPreview).val();
+        })
+
+        $("#imageURLPreview").on("Change", function () {
             const output = document.getElementById("imagePreview");
             output.src = $(this).val();
         })
