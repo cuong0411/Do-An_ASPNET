@@ -1,4 +1,5 @@
 using Do_An.Data;
+using Do_An.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,9 @@ namespace Do_An
                 options.UseSqlServer(Configuration.GetConnectionString("Conn"));
             });
             services.AddControllersWithViews();
+
+            // add service for interface category
+            services.AddScoped<ICategoriesService, CategoriesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
