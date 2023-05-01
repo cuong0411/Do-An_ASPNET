@@ -118,7 +118,9 @@ namespace Do_An.Controllers
                 return View("NotFound");
             }
 
-            
+            // Khi update, nếu người dùng upload ảnh mới
+            // thì xóa ảnh cũ trong webrootpath
+            // cập nhật tên file và copy ảnh mới vào webrootpath
             if (editProductDTO.ImageFile != null)
             {
                 var fileName = product.Image; // image name in images folder
