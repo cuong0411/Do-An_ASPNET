@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace Do_An.Models.DTO
 {
-    public class ProductDTO
+    public class EditProductDTO
     {
         [Display(Name = "Tên Sản Phẩm")]
         [Required(ErrorMessage = "Tên sản phẩm không được bỏ trống")]
@@ -16,7 +17,6 @@ namespace Do_An.Models.DTO
         public long Price { get; set; }
         public string Image { get; set; }
         [Display(Name = "Hình Ảnh")]
-        [Required(ErrorMessage = "Hình ảnh không được bỏ trống")]
         public IFormFile ImageFile { get; set; }
         [Display(Name = "Chọn Danh Mục Sản Phẩm")]
         [Required(ErrorMessage = "Danh mục sản phẩm không được bỏ trống")]

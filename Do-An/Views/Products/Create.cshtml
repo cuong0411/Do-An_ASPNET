@@ -2,7 +2,7 @@
 <br/>
 @ViewBag.Description*@
 
-@model ProductDTO
+@model AddProductDTO
 
 @{
     ViewData["Title"] = "Create a New Product";
@@ -45,20 +45,7 @@
                             <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
                         </div>
                     </div>
-
-                    @*<div class="col-4">
-                        <img width="100%" id="ImageUrlPreview"/>
-                    </div>*@
                 </div>
             </form>
         </div>
 </div>
-
-@*@section Scripts{
-    <script>
-        $("ImageUrl").on("change", function() {
-            const output = document.getElementById("ImageUrlPreview");
-            output.src = $(this).val();
-        })
-    </script>
-}*@

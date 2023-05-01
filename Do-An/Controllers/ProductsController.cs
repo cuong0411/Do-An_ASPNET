@@ -50,33 +50,104 @@ namespace Do_An.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(ProductDTO productDTO)
+        public async Task<IActionResult> Create(AddProductDTO addProductDTO)
         {
             if (!ModelState.IsValid)
             {
-                return View(productDTO);
+                return View(addProductDTO);
             }
             
             // Save image to webrootpath
-            var fileName = productDTO.ImageFile.FileName;
+            var fileName = addProductDTO.ImageFile.FileName;
             var imagesFolder = Path.Combine(host.WebRootPath, "images");
             var filePath = Path.Combine(imagesFolder, fileName);
-            productDTO.ImageFile.CopyTo(new FileStream(filePath, FileMode.Create));
+            addProductDTO.ImageFile.CopyTo(new FileStream(filePath, FileMode.Create));
 
             // Save image path in database
-            productDTO.Image = Path.Combine("images", fileName);
+            addProductDTO.Image = fileName;
 
             // DTO => Domain
             Product product = new()
             {
-                Name = productDTO.Name,
-                Description = productDTO.Description,
-                Price = productDTO.Price,
-                Image = productDTO.Image,
-                CategoryId = productDTO.CategoryId,
+                Name = addProductDTO.Name,
+                Description = addProductDTO.Description,
+                Price = addProductDTO.Price,
+                Image = addProductDTO.Image,
+                CategoryId = addProductDTO.CategoryId,
             };
             await productsService.AddAsync(product);
 
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: /Products/Edit/1
+        public async Task<IActionResult> Edit(int id)
+        {
+            var categories = await categoriesService.GetAllAsync();
+            ViewBag.categories = new SelectList(categories, "Id", "Name");
+
+            var product = await productsService.GetByIdAsync(id);
+            if (product == null)
+            {
+                return View("NotFound");
+            }
+
+            // Domain => DTO
+            var eidtProductDTO = new EditProductDTO()
+            {
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                Image = product.Image,
+                CategoryId = product.CategoryId,
+            };
+            return View(eidtProductDTO);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditProductDTO editProductDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(editProductDTO);
+            }
+
+            // Domain
+            var product = await productsService.GetProductByIdAsync(id);
+            if (product == null)
+            {
+                return View("NotFound");
+            }
+
+            
+            if (editProductDTO.ImageFile != null)
+            {
+                var fileName = product.Image; // image name in images folder
+                var imagesFolder = Path.Combine(host.WebRootPath, "images");
+                var filePath = Path.Combine(imagesFolder, fileName);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath); // Delete old image
+                }
+
+                // Save new image to webrootpath
+                var newFileName = editProductDTO.ImageFile.FileName;
+                var newFilePath = Path.Combine(imagesFolder, newFileName);
+                editProductDTO.ImageFile.CopyTo(new FileStream(newFilePath, FileMode.Create));
+
+                // Save new image path in database
+                editProductDTO.Image = newFileName;
+            }
+
+
+            // DTO => Domain
+
+            product.Name = editProductDTO.Name;
+            product.Description = editProductDTO.Description;
+            product.Price = editProductDTO.Price;
+            product.CategoryId = editProductDTO.CategoryId;
+            product.Image = editProductDTO.Image;
+
+            await productsService.UpdateAsync(id, product);
             return RedirectToAction(nameof(Index));
         }
     }
