@@ -12,6 +12,9 @@
                 <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 </form>
+                <div class="form-group text-center">
+                    <img id="imagePreview" />
+                </div>
                 <div class="form-group">
                     <label asp-for="Name"></label>
                     <input asp-for="Name" class="form-control"/>
@@ -28,8 +31,8 @@
 
 @section scripts{
     <script>
-        $("#ProfilePictureURL").on("Change", function () {
-            const output = document.getElementById("ProfilePictureURL");
+        $("#imagePreview").on("Change", function () {
+            const output = document.getElementById("imagePreview");
             output.src = $(this).val();
         })
     </script>
