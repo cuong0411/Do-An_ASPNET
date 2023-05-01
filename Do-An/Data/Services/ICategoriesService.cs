@@ -10,6 +10,6 @@ namespace Do_An.Data.Services
         Task<Category> GetByIdAsync(int id);
         Task AddAsync(Category category);
         Task<Category> UpdateAsync(int id, Category newCategory);
-        void Delete(int id);
+        Task DeleteAsync(int id);
     }
 }

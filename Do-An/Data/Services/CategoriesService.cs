@@ -20,9 +20,11 @@ namespace Do_An.Data.Services
             await appDbContext.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new System.NotImplementedException();
+            Category category = await appDbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            appDbContext.Categories.Remove(category);
+            await appDbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Category>> GetAllAsync()
@@ -33,6 +35,10 @@ namespace Do_An.Data.Services
         public async Task<Category> GetByIdAsync(int id)
         {
             Category category = await appDbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            if(category == null)
+            {
+                return null;
+            }
             return category;
         }
 

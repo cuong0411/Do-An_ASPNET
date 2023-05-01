@@ -72,5 +72,29 @@ namespace Do_An.Controllers
             // Trang danh sách category
             return RedirectToAction(nameof(Index));
         }
+
+        // GET: /Categories/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var category = await categoriesService.GetByIdAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+        }
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var category = await categoriesService.GetByIdAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            await categoriesService.DeleteAsync(id);
+
+            // Trang danh sách category
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
