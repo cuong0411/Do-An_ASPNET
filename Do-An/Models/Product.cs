@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Do_An.Data.Base;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Do_An.Models
 {
-    public class Product
+    public class Product : IEntityBase
     {
         [Key]
         [Display(Name = "Mã Sản Phẩm")]
