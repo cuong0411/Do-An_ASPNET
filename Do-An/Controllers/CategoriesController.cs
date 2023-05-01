@@ -50,5 +50,27 @@ namespace Do_An.Controllers
             }
             return View(category);
         }
+        // GET: /Categories/Edit/1
+        public async Task<IActionResult> Edit(int id)
+        {
+            var category = await categoriesService.GetByIdAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Category category)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
+            await categoriesService.UpdateAsync(id, category);
+
+            // Trang danh sách category
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

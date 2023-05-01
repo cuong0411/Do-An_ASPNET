@@ -9,7 +9,7 @@ namespace Do_An.Data.Services
         Task<IEnumerable<Category>> GetAllAsync();
         Task<Category> GetByIdAsync(int id);
         Task AddAsync(Category category);
-        Category Update(int id, Category newCategory);
+        Task<Category> UpdateAsync(int id, Category newCategory);
         void Delete(int id);
     }
 }
