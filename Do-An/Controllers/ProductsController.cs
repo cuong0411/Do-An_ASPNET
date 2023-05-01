@@ -17,7 +17,7 @@ namespace Do_An.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var products = await productsService.GetAllAsync();
+            var products = await productsService.GetAllAsync(p => p.Category);
             return View(products);
         }
     }
