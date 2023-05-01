@@ -14,7 +14,7 @@ namespace Do_An.Data.Services
         {
             this.appDbContext = appDbContext;
         }
-        public async Task Add(Category category)
+        public async Task AddAsync(Category category)
         {
             await appDbContext.Categories.AddAsync(category);
             await appDbContext.SaveChangesAsync();
@@ -25,14 +25,15 @@ namespace Do_An.Data.Services
             throw new System.NotImplementedException();
         }
 
-        public async Task<IEnumerable<Category>> GetAll()
+        public async Task<IEnumerable<Category>> GetAllAsync()
         {
             return await appDbContext.Categories.ToListAsync();
         }
 
-        public Category GetById(int id)
+        public async Task<Category> GetByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            Category category = await appDbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
+            return category;
         }
 
         public Category Update(int id, Category newCategory)

@@ -24,9 +24,12 @@
                         <td>@item.Id</td>
                         <td>@item.Name</td>
                         <td>
-                            <a class="btn btn-outline-primary"><i class="bi bi-pencil"></i>Edit </a> |
-                            <a class="btn btn-outline-info"><i class="bi bi-eye"></i>Details </a> |
-                            <a class="btn btn-danger"><i class="bi bi-trash"></i>Delete </a>
+                            <a class="btn btn-outline-primary" asp-controller="Categories" asp-action="Edit" asp-route-id="@item.Id">
+                                <i class="bi bi-pencil"></i>Edit </a> |
+                            <a class="btn btn-outline-info" asp-controller="Categories" asp-action="Details" asp-route-id="@item.Id">
+                                <i class="bi bi-eye"></i>Details </a> |
+                            <a class="btn btn-danger" asp-controller="Categories" asp-action="Delete" asp-route-id="@item.Id">
+                                <i class="bi bi-trash"></i>Delete </a>
                         </td>
                     </tr>
                 }

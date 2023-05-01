@@ -6,9 +6,9 @@ namespace Do_An.Data.Services
 {
     public interface ICategoriesService
     {
-        Task<IEnumerable<Category>> GetAll();
-        Category GetById(int id);
-        Task Add(Category category);
+        Task<IEnumerable<Category>> GetAllAsync();
+        Task<Category> GetByIdAsync(int id);
+        Task AddAsync(Category category);
         Category Update(int id, Category newCategory);
         void Delete(int id);
     }

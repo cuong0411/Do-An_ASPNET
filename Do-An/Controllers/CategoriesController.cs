@@ -18,7 +18,7 @@ namespace Do_An.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var categories = await categoriesService.GetAll();
+            var categories = await categoriesService.GetAllAsync();
             return View(categories);
         }
 
@@ -34,10 +34,21 @@ namespace Do_An.Controllers
             {
                 return View(category);
             }
-            await categoriesService.Add(category);
+            await categoriesService.AddAsync(category);
 
             // Trang danh sách category
             return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Categories/Details/1
+        public async Task<IActionResult> Details(int id)
+        {
+            var category = await categoriesService.GetByIdAsync(id);
+            if (category == null)
+            {
+                return NotFound($"{id} is not valid");
+            }
+            return View(category);
         }
     }
 }
