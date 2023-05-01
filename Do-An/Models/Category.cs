@@ -8,6 +8,7 @@ namespace Do_An.Models
         [Display(Name = "Mã Danh Mục")]
         public int Id { get; set; }
         [Display(Name = "Tên Danh Mục")]
+        [Required(ErrorMessage = "Tên Danh Mục không được bỏ trống")]
         public string Name { get; set; }
     }
 }
