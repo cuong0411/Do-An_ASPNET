@@ -20,5 +20,11 @@ namespace Do_An.Controllers
             var categories = await categoriesService.GetAll();
             return View(categories);
         }
+
+        // GET: /Categories/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
