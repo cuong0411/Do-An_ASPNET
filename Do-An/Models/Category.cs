@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Do_An.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace Do_An.Models
 {
-    public class Category
+    public class Category : IEntityBase
     {
         [Key]
         [Display(Name = "Mã Danh Mục")]

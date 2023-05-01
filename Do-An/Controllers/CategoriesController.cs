@@ -16,6 +16,7 @@ namespace Do_An.Controllers
         {
             this.categoriesService = categoriesService;
         }
+        // GET: /Categories
         public async Task<IActionResult> Index()
         {
             var categories = await categoriesService.GetAllAsync();
