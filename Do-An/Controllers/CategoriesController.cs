@@ -1,4 +1,5 @@
 ﻿using Do_An.Data;
+using Do_An.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -8,15 +9,15 @@ namespace Do_An.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly AppDbContext appDbContext;
+        private readonly ICategoriesService categoriesService;
 
-        public CategoriesController(AppDbContext appDbContext)
+        public CategoriesController(ICategoriesService categoriesService)
         {
-            this.appDbContext = appDbContext;
+            this.categoriesService = categoriesService;
         }
         public async Task<IActionResult> Index()
         {
-            var categories = await appDbContext.Categories.ToListAsync();
+            var categories = await categoriesService.GetAll();
             return View(categories);
         }
     }
