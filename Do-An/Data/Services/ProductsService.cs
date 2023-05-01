@@ -16,6 +16,7 @@ namespace Do_An.Data.Services
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
+            // include category property
             Product product = await appDbContext.Products
                 .Include(p => p.Category)
                 .FirstOrDefaultAsync(p => p.Id == id);

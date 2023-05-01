@@ -27,5 +27,13 @@ namespace Do_An.Controllers
             var product = await productsService.GetProductByIdAsync(id);
             return View(product);
         }
+
+        // GET: /Products/Create
+        public IActionResult Create()
+        {
+            ViewData["Welcome"] = "Welcome to our store";
+            ViewBag.Description = "This is a store description";
+            return View();
+        }
     }
 }

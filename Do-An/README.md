@@ -25,3 +25,8 @@
 - Price
 - Image
 - Category
+
+#### Note
+
+- A **ViewData** is a dictionary with string keys and object values.
+- A **ViewBag** is a wrapper built around **ViewData**.
