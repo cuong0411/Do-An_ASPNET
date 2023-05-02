@@ -12,7 +12,9 @@
             <div class="card h-100 mx-auto" style="width: 18rem;">
                 <div class="card-header d-flex justify-content-between">
                     <p class="badge badge-pill badge-secondary m-0 d-flex align-items-center">@item.Category.Name</p>
-                    <a href="#" class="btn btn-outline-primary"><i class="bi bi-cart"></i></a>
+                    <a class="btn btn-outline-primary" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                        <i class="bi bi-cart"></i>
+                        </a>
                 </div>
                 <img src="/images/@item.Image" class="card-img-top" alt=@item.Name>
                 <div class="card-body">

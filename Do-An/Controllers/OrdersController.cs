@@ -2,6 +2,7 @@
 using Do_An.Data.Services;
 using Do_An.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace Do_An.Controllers
 {
@@ -25,6 +26,29 @@ namespace Do_An.Controllers
                 ShoppingCartToal = shoppingCart.GetShoppingCartTotal()
             };
             return View(response);
+        }
+
+        public async Task<IActionResult> AddItemToShoppingCart(int id)
+        {
+            var product = await productsService.GetProductByIdAsync(id);
+
+            if (product != null) 
+            {
+                shoppingCart.AddItemToCart(product);
+            }
+
+            return RedirectToAction(nameof(ShoppingCart));
+        }
+        public async Task<IActionResult> RemoveItemFromShoppingCart(int id)
+        {
+            var product = await productsService.GetProductByIdAsync(id);
+
+            if (product != null)
+            {
+                shoppingCart.RemoveItemFromCart(product);
+            }
+
+            return RedirectToAction(nameof(ShoppingCart));
         }
     }
 }
