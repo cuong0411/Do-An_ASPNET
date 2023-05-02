@@ -32,6 +32,18 @@ namespace Do_An.Controllers
             var products = await productsService.GetAllAsync(p => p.Category);
             return View(products);
         }
+        [HttpPost]
+        public async Task<IActionResult> Filter(string searchString = "")
+        {
+            // include Category property
+            var products = await productsService.GetAllAsync(p => p.Category);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(p => p.Name.Contains(searchString, System.StringComparison.InvariantCultureIgnoreCase)).ToList();
+            }
+            //return RedirectToAction(nameof(Index), products);
+            return View("Index", products);
+        }
 
         // GET: /Products/Details/1
         public async Task<IActionResult> Details(int id)
