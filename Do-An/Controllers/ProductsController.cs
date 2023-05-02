@@ -20,7 +20,6 @@ namespace Do_An.Controllers
         private readonly IWebHostEnvironment host;
         private readonly ICategoriesService categoriesService;
 
-        [System.Obsolete]
         public ProductsController(IProductsService productsService, IWebHostEnvironment host, ICategoriesService categoriesService)
         {
             this.productsService = productsService;
