@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Do_An.Models
 {
+    // Đơn đặt hàng
     public class Order
     {
         [Key]
