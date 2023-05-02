@@ -38,6 +38,7 @@ namespace Do_An
             // add service for interface category
             services.AddScoped<ICategoriesService, CategoriesService>();
             services.AddScoped<IProductsService, ProductsService>();
+            services.AddScoped<IOrdersService, OrdersService>();
 
             // session
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
