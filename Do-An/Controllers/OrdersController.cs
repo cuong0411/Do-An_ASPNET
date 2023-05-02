@@ -18,6 +18,13 @@ namespace Do_An.Controllers
             this.shoppingCart = shoppingCart;
             this.ordersService = ordersService;
         }
+        public async Task<IActionResult> Index()
+        {
+            string userId = "";
+            var orders = await ordersService.GetOrdersByUserIdAsync(userId);
+
+            return View(orders);
+        }
         public IActionResult ShoppingCart()
         {
             var items = shoppingCart.GetShoppingCartItems();
