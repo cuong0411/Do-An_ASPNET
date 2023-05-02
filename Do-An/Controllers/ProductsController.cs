@@ -137,7 +137,7 @@ namespace Do_An.Controllers
                 editProductDTO.ImageFile.CopyTo(new FileStream(newFilePath, FileMode.Create));
 
                 // Save new image path in database
-                editProductDTO.Image = newFileName;
+                product.Image = newFileName;
             }
 
 
@@ -147,7 +147,6 @@ namespace Do_An.Controllers
             product.Description = editProductDTO.Description;
             product.Price = editProductDTO.Price;
             product.CategoryId = editProductDTO.CategoryId;
-            product.Image = editProductDTO.Image;
 
             await productsService.UpdateAsync(id, product);
             return RedirectToAction(nameof(Index));
