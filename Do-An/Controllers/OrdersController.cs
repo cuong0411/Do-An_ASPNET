@@ -15,7 +15,7 @@ namespace Do_An.Controllers
             this.productsService = productsService;
             this.shoppingCart = shoppingCart;
         }
-        public IActionResult Index()
+        public IActionResult ShoppingCart()
         {
             var items = shoppingCart.GetShoppingCartItems();
             shoppingCart.ShoppingCartItems = items;

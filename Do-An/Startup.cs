@@ -1,7 +1,9 @@
 using Do_An.Data;
+using Do_An.Data.Cart;
 using Do_An.Data.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer.Update.Internal;
@@ -32,11 +34,17 @@ namespace Do_An
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Conn"));
             });
-            services.AddControllersWithViews();
-
+            
             // add service for interface category
             services.AddScoped<ICategoriesService, CategoriesService>();
             services.AddScoped<IProductsService, ProductsService>();
+
+            // session
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+            services.AddSession();
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +64,9 @@ namespace Do_An
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            // sesstion
+            app.UseSession();
 
             app.UseAuthorization();
 

@@ -1,6 +1,8 @@
 ﻿using Do_An.Migrations;
 using Do_An.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,16 @@ namespace Do_An.Data.Cart
         public ShoppingCart(AppDbContext appDbContext)
         {
             this.appDbContext = appDbContext;
+        }
+        public static ShoppingCart GetShoppingCart(IServiceProvider service)
+        {
+            ISession session = service.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
+            var context = service.GetService<AppDbContext>();
+
+            string cartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
+            session.SetString("CartId", cartId);
+
+            return new ShoppingCart(context) { ShoppingCartId = cartId };
         }
         public void AddItemToCart(Product product)
         {
