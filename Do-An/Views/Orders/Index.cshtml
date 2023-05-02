@@ -1,0 +1,62 @@
+﻿@model ShoppingCartDTO
+
+@{
+    ViewData["Title"] = "Shopping Cart Summary";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <h2 class="text-center">Your Shopping Cart Summary</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Selected Amount</th>
+                    <th>Movie</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ShoppingCart.GetShoppingCartItems())
+                {
+                    <tr>
+                        <td>@item.Amount</td>
+                        <td>@item.Product.Name</td>
+                        <td>@item.Product.Price.ToString("c")</td>
+                        <td>@((item.Amount * item.Product.Price).ToString("c"))</td>
+                        <td>
+                            <a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart" asp-route-id="@item.Product.Id">
+                                <i class="bi bi-cart-dash"></i>
+                            </a>
+                            |
+                            <a class="text-success" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Product.Id">
+                                <i class="bi bi-cart-plus"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td><b>Total:</b></td>
+                    <td>
+                        @Model.ShoppingCartToal.ToString("c")
+                    </td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="text-center">
+            <div class="btn btn-group">
+                <a class="btn btn-outline-success" asp-controller="Products" asp-action="Index">
+                    Add More Items
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</div>
