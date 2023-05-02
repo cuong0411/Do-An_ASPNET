@@ -1,0 +1,32 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Delete a Product";
+}
+
+<h1 class="text-danger">Delete a Product</h1>
+<div class="card mb-3">
+    <div class="row no-gutters">
+        <div class="col-12 col-md-4">
+            <img src="/images/@Model.Image" alt="@Model.Name" style="width: 100%">
+        </div>
+        <div class="col-12 col-md-8">
+            <div class="card-header d-flex justify-content-end">
+                <p class="badge badge-pill badge-secondary m-0 d-flex align-items-center">@Model.Category.Name</p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <p class="card-text">@Model.Description</p>
+                <p class="card-text">Giá: <span class="text-success">@Model.Price.ToString("c")</span></p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+            <div class="card-footer">
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Confirm" class="btn btn-danger float-right" />
+                </form>
+                <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>

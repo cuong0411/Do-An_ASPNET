@@ -28,6 +28,7 @@ namespace Do_An.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            // include Category property
             var products = await productsService.GetAllAsync(p => p.Category);
             return View(products);
         }
@@ -148,6 +149,23 @@ namespace Do_An.Controllers
             product.CategoryId = editProductDTO.CategoryId;
 
             await productsService.UpdateAsync(id, product);
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Products/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var product = await productsService.GetProductByIdAsync(id);
+            if (product == null) { return View("NotFound"); }
+            return View(product);
+        }
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var product = await productsService.GetProductByIdAsync(id);
+            if (product == null) { return View("NotFound"); }
+
+            await productsService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
     }
