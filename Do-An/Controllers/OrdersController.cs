@@ -10,11 +10,13 @@ namespace Do_An.Controllers
     {
         private readonly IProductsService productsService;
         private readonly ShoppingCart shoppingCart;
+        private readonly IOrdersService ordersService;
 
-        public OrdersController(IProductsService productsService, ShoppingCart shoppingCart)
+        public OrdersController(IProductsService productsService, ShoppingCart shoppingCart, IOrdersService ordersService)
         {
             this.productsService = productsService;
             this.shoppingCart = shoppingCart;
+            this.ordersService = ordersService;
         }
         public IActionResult ShoppingCart()
         {
@@ -49,6 +51,17 @@ namespace Do_An.Controllers
             }
 
             return RedirectToAction(nameof(ShoppingCart));
+        }
+        public async Task<IActionResult> CompleteOrder()
+        {
+            var items = shoppingCart.GetShoppingCartItems();
+            string userId = "";
+            string userEmail = "";
+
+            await ordersService.StoreOrderAsync(items, userId, userEmail);
+            await shoppingCart.ClearShoppingCartAsync();
+
+            return View("OrderCompleted");
         }
     }
 }

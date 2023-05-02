@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Do_An.Data.Cart
 {
@@ -82,6 +83,14 @@ namespace Do_An.Data.Cart
             return appDbContext.ShoppingCartItems
                 .Where(s => s.ShoppingCartId == ShoppingCartId)
                 .Select(n => n.Product.Price * n.Amount).Sum();
+        }
+        public async Task ClearShoppingCartAsync()
+        {
+            var items = await appDbContext.ShoppingCartItems
+                .Where(s => s.ShoppingCartId == ShoppingCartId)
+                .ToListAsync();
+            appDbContext.ShoppingCartItems.RemoveRange(items);
+            await appDbContext.SaveChangesAsync();
         }
     }
 }
