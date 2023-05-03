@@ -1,4 +1,5 @@
-﻿using Do_An.Models;
+﻿using Do_An.Data.Static;
+using Do_An.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +15,20 @@ namespace Do_An.Data.Services
         {
             this.appDbContext = appDbContext;
         }
-        public async Task<List<Order>> GetOrdersByUserIdAsync(string userId)
+        public async Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId, string userRole)
         {
-            return await appDbContext.Orders
+            var orders =  await appDbContext.Orders
                 .Include(o => o.OrderItems)
                 .ThenInclude(o => o.Product)
-                .Where(o => o.UserId == userId)
+                .Include(o => o.User)
                 .ToListAsync();
+
+            if (userRole != UserRoles.Admin)
+            {
+                orders = orders.Where(o => o.UserId == userId).ToList();
+            }
+
+            return orders;
         }
 
         public async Task StoreOrderAsync(List<ShoppingCartItem> items, string userId, string userEmail)

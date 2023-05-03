@@ -2,6 +2,7 @@
 using Do_An.Data.Services;
 using Do_An.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Do_An.Controllers
@@ -20,8 +21,9 @@ namespace Do_An.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            string userId = "";
-            var orders = await ordersService.GetOrdersByUserIdAsync(userId);
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userRole = User.FindFirstValue(ClaimTypes.Role);
+            var orders = await ordersService.GetOrdersByUserIdAndRoleAsync(userId, userRole);
 
             return View(orders);
         }
@@ -62,8 +64,8 @@ namespace Do_An.Controllers
         public async Task<IActionResult> CompleteOrder()
         {
             var items = shoppingCart.GetShoppingCartItems();
-            string userId = "";
-            string userEmail = "";
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userEmail = User.FindFirstValue(ClaimTypes.Email);
 
             await ordersService.StoreOrderAsync(items, userId, userEmail);
             await shoppingCart.ClearShoppingCartAsync();
