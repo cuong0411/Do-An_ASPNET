@@ -33,6 +33,11 @@
                         </li>
                     </ul>
 
+                    <a class="btn btn-outline-success my-2 my-sm-0" asp-controller="Account" asp-action="Login">
+                        <i class="bi bi-box-arrow-in-right"></i> Log in
+                    </a>
+
+                    @*User profile section*@
                     <ul class="navbar-nav">
                         @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
