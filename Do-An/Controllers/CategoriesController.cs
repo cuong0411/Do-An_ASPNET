@@ -1,5 +1,6 @@
 ﻿using Do_An.Data;
 using Do_An.Data.Services;
+using Do_An.Data.Static;
 using Do_An.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Do_An.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = UserRoles.Admin)]
     public class CategoriesController : Controller
     {
         private readonly ICategoriesService categoriesService;

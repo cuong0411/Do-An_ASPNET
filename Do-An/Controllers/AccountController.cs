@@ -2,14 +2,17 @@
 using Do_An.Data.Static;
 using Do_An.Models.DTO;
 using Do_An.Models.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Do_An.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -23,13 +26,16 @@ namespace Do_An.Controllers
             this.appDbContext = appDbContext;
         }
 
+        [Authorize(Roles = UserRoles.Admin)]
         public async Task<IActionResult> Users()
         {
             var users = await appDbContext.Users.ToListAsync();
             return View(users);
         }
+        [AllowAnonymous]
         public IActionResult Login() => View(new Login());
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(Login login)
         {
             if (!ModelState.IsValid)
@@ -54,7 +60,7 @@ namespace Do_An.Controllers
             TempData["Error"] = "Wrong credentials. Please try again";
             return View(login);
         }
-
+        [AllowAnonymous]
         public IActionResult Register() => View(new Register());
         [HttpPost]
         public async Task<IActionResult> Register(Register register)
@@ -102,6 +108,12 @@ namespace Do_An.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

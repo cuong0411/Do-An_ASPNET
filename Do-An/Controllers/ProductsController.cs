@@ -1,5 +1,6 @@
 ﻿using Do_An.Data;
 using Do_An.Data.Services;
+using Do_An.Data.Static;
 using Do_An.Models;
 using Do_An.Models.DTO;
 using Microsoft.AspNetCore.Authorization;
@@ -15,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Do_An.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = UserRoles.Admin)]
     public class ProductsController : Controller
     {
         private readonly IProductsService productsService;

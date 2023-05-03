@@ -1,5 +1,6 @@
 ﻿using Do_An.Data.Cart;
 using Do_An.Data.Services;
+using Do_An.Data.Static;
 using Do_An.Models.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
