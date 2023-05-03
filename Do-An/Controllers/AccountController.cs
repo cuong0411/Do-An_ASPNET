@@ -1,4 +1,5 @@
 ﻿using Do_An.Data;
+using Do_An.Data.Cart;
 using Do_An.Data.Static;
 using Do_An.Models.DTO;
 using Do_An.Models.Identity;
@@ -18,12 +19,14 @@ namespace Do_An.Controllers
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly AppDbContext appDbContext;
+        private readonly ShoppingCart shoppingCart;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, AppDbContext appDbContext)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, AppDbContext appDbContext, ShoppingCart shoppingCart)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.appDbContext = appDbContext;
+            this.shoppingCart = shoppingCart;
         }
 
         [Authorize(Roles = UserRoles.Admin)]
@@ -107,6 +110,9 @@ namespace Do_An.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
+
+            // đăng xuất xóa giỏ hàng hiện tại
+            await shoppingCart.ClearShoppingCartAsync();
             return RedirectToAction("Index", "Home");
         }
 
