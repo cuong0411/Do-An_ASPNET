@@ -89,5 +89,12 @@ namespace Do_An.Controllers
                 return View(register);
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
