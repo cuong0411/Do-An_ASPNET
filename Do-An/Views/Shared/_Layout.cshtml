@@ -22,15 +22,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Products" asp-action="Index"><i class="badge badge-info bi bi-list"></i> Products</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-gear"></i> Management
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-controller="Categories" asp-action="Index"> Category</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                            </div>
-                        </li>
+
+                        @*Admin đăng nhập*@
+                        @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-gear"></i> Management
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Categories" asp-action="Index"> Category</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                </div>
+                            </li>
+                        }
+                        
                     </ul>
 
                     @*cart*@

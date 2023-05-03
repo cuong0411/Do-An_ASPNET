@@ -18,7 +18,7 @@
                     <p class="badge badge-pill badge-secondary m-0 d-flex align-items-center">@item.Category.Name</p>
                     <a class="btn btn-outline-primary" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
                         <i class="bi bi-cart"></i>
-                        </a>
+                    </a>
                 </div>
                 <img src="/images/@item.Image" class="card-img-top" alt=@item.Name>
                 <div class="card-body">
@@ -28,12 +28,15 @@
                         <a class="btn btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id">
                             <i class="bi bi-eye"></i>
                         </a>
-                        <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">
-                            <i class="bi bi-pencil"></i>
-                        </a>
-                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">
-                            <i class="bi bi-trash"></i>
-                        </a>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole(UserRoles.Admin))
+                        {
+                            <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        }
                     </div>
                 </div>
             </div>
