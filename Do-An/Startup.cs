@@ -80,6 +80,7 @@ namespace Do_An
 
             // Seed database
             AppDbInitializer.Seed(app);
+            AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
         }
     }
 }
