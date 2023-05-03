@@ -1,12 +1,14 @@
 ﻿using Do_An.Data.Cart;
 using Do_An.Data.Services;
 using Do_An.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Do_An.Controllers
 {
+    [Authorize]
     public class OrdersController : Controller
     {
         private readonly IProductsService productsService;

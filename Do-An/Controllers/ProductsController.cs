@@ -2,6 +2,7 @@
 using Do_An.Data.Services;
 using Do_An.Models;
 using Do_An.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace Do_An.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private readonly IProductsService productsService;
@@ -26,6 +28,7 @@ namespace Do_An.Controllers
             this.host = host;
             this.categoriesService = categoriesService;
         }
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             // include Category property
@@ -33,6 +36,7 @@ namespace Do_An.Controllers
             return View(products);
         }
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Filter(string searchString = "")
         {
             // include Category property
@@ -46,6 +50,7 @@ namespace Do_An.Controllers
         }
 
         // GET: /Products/Details/1
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var product = await productsService.GetProductByIdAsync(id);
