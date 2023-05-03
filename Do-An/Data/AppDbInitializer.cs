@@ -89,7 +89,7 @@ namespace Do_An.Data
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
                 string adminUserEmail = "admin@gmail.com";
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
-                if (adminUser != null)
+                if (adminUser == null)
                 {
                     var newAdminUser = new ApplicationUser()
                     {
@@ -98,13 +98,13 @@ namespace Do_An.Data
                         Email = adminUserEmail,
                         EmailConfirmed = true
                     };
-                    await userManager.CreateAsync(newAdminUser, "0000");
+                    await userManager.CreateAsync(newAdminUser, "Aa0000@@");
                     await userManager.AddToRoleAsync(newAdminUser, UserRoles.Admin);
                 }
 
                 string appUserEmail = "user@gmail.com";
                 var appUser = await userManager.FindByEmailAsync(appUserEmail);
-                if (appUser != null)
+                if (appUser == null)
                 {
                     var newAppUser = new ApplicationUser()
                     {
@@ -113,7 +113,7 @@ namespace Do_An.Data
                         Email = appUserEmail,
                         EmailConfirmed = true
                     };
-                    await userManager.CreateAsync(newAppUser, "0000");
+                    await userManager.CreateAsync(newAppUser, "Aa0000@@");
                     await userManager.AddToRoleAsync(newAppUser, UserRoles.User);
                 }
             }
