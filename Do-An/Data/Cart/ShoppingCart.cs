@@ -91,6 +91,8 @@ namespace Do_An.Data.Cart
                 .ToListAsync();
             appDbContext.ShoppingCartItems.RemoveRange(items);
             await appDbContext.SaveChangesAsync();
+
+            ShoppingCartItems = new List<ShoppingCartItem>();
         }
     }
 }
