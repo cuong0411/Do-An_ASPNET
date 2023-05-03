@@ -20,6 +20,12 @@ else
             <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
                 <i class="bi bi-list"></i> Orders
             </a>
+            @if(User.IsInRole(UserRoles.Admin))
+            {
+                <a class="dropdown-item" asp-controller="Account" asp-action="Users">
+                    <i class="bi bi-people"></i> Users
+                </a>
+            }
         </div>
     </div>
 

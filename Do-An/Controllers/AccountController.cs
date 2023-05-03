@@ -4,6 +4,7 @@ using Do_An.Models.DTO;
 using Do_An.Models.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +21,12 @@ namespace Do_An.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.appDbContext = appDbContext;
+        }
+
+        public async Task<IActionResult> Users()
+        {
+            var users = await appDbContext.Users.ToListAsync();
+            return View(users);
         }
         public IActionResult Login() => View(new Login());
         [HttpPost]
