@@ -45,5 +45,7 @@ namespace Do_An.Controllers
             TempData["Error"] = "Wrong credentials. Please try again";
             return View(login);
         }
+
+        public IActionResult Register() => View(new Register());
     }
 }
