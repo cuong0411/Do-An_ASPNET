@@ -1,4 +1,4 @@
-using Do_An.Data;
+﻿using Do_An.Data;
 using Do_An.Data.Cart;
 using Do_An.Data.Services;
 using Do_An.Models.Identity;
@@ -95,7 +95,7 @@ namespace Do_An
 
             // Seed database
             AppDbInitializer.Seed(app);
-            AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
+            AppDbInitializer.SeedUsersAndRolesAsync(app).Wait(); // là phương thức async nên cần phải thêm Wait()
         }
     }
 }

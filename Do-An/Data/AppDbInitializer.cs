@@ -12,6 +12,12 @@ namespace Do_An.Data
 {
     public class AppDbInitializer
     {
+        /// <summary>
+        /// Khởi tạo vài dữ liệu Category và Product
+        /// nếu trong database không tồn tại bất cứ dữ liệu nào
+        /// của 2 model trên
+        /// </summary>
+        /// <param name="applicationBuilder"></param>
         public static void Seed(IApplicationBuilder applicationBuilder)
         {
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
@@ -68,6 +74,12 @@ namespace Do_An.Data
             }
         }
 
+        /// <summary>
+        /// Khởi tạo 2 role Admin và User nếu không tồn tại.
+        /// Khởi tạo 2 user admin-user và app-user tương ứng với 2 role có sẵn nếu không tồn tại.
+        /// Hàm được gọi tại Startup file để kiểm tra mỗi khi chương trình được chạy
+        /// </summary>
+        /// <param name="applicationBuilder"></param>
         public static async Task SeedUsersAndRolesAsync(IApplicationBuilder applicationBuilder)
         {
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
@@ -75,11 +87,12 @@ namespace Do_An.Data
                 // role section
                 var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                // nếu admin không tồn tại trong datatbase thì tạo mới
+                // nếu Admin role không tồn tại trong datatbase thì tạo mới
                 if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
                 {
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
                 }
+                // nếu User role không tồn tại trong datatbase thì tạo mới
                 if (!await roleManager.RoleExistsAsync(UserRoles.User))
                 {
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
