@@ -64,7 +64,9 @@ namespace Do_An.Controllers
             return View(login);
         }
         [AllowAnonymous]
+        [HttpGet]
         public IActionResult Register() => View(new Register());
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(Register register)
         {

@@ -30,12 +30,14 @@
 
 - A **ViewData** is a dictionary with string keys and object values.
 - A **ViewBag** is a wrapper built around **ViewData**.
-- 
-admin@gmail.com
 
-user@gmail.com
+Account:
 
-Aa0000@@
+- admin@gmail.com - Aa0000@@
+
+- user@gmail.com - Aa0000@@
+
+- t@t.com - v6dZ5FimU7Tk3dG@
 
 Microsoft.AspNetCore.Identity.UserManager: Warning: User password validation failed: PasswordRequiresNonAlphanumeric;PasswordRequiresLower;PasswordRequiresUpper.
 
