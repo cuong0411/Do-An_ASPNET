@@ -1,20 +1,20 @@
 ﻿@model ShoppingCartDTO
 
 @{
-    ViewData["Title"] = "Shopping Cart Summary";
+    ViewData["Title"] = "Thông Tin Giỏ Hàng";
 }
 
 <div class="row">
     <div class="col-md-8">
-        <h2 class="text-center">Your Shopping Cart Summary</h2>
+        <h2 class="text-center">Thông Tin Giỏ Hàng</h2>
         <table class="table">
             <thead>
                 <tr>
                     <td></td>
-                    <th>Selected Amount</th>
-                    <th>Movie</th>
-                    <th>Price</th>
-                    <th>Subtotal</th>
+                    <th>Số Lượng</th>
+                    <th>Sản Phẩm</th>
+                    <th>Giá Tiền</th>
+                    <th>Tạm Tính</th>
                     <th></th>
                 </tr>
             </thead>
@@ -44,7 +44,7 @@
             <tfoot>
                 <tr>
                     <td colspan="3"></td>
-                    <td><b>Total:</b></td>
+                    <td><b>Tổng Tiền :</b></td>
                     <td>
                         @Model.ShoppingCartToal.ToString("c")
                     </td>
@@ -56,10 +56,10 @@
         <div class="text-center">
             <div class="btn btn-group">
                 <a class="btn btn-outline-primary" asp-controller="Orders" asp-action="CompleteOrder">
-                     Complete Order
+                     Đặt hàng
                 </a>
                 <a class="btn btn-outline-success" asp-controller="Products" asp-action="Index">
-                    Add More Items
+                    Thêm sản phẩm
                 </a>
 
             </div>

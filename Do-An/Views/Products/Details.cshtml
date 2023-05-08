@@ -1,10 +1,10 @@
 ﻿@model Product
 
 @{
-    ViewData["Title"] = "Product Details";
+    ViewData["Title"] = "Chi Tiết Sản Phẩm";
 }
 
-<h1>Product Details</h1>
+<h1>Chi Tiết Sản Phẩm</h1>
 <div class="card mb-3">
     <div class="row no-gutters">
         <div class="col-12 col-md-4">
@@ -21,9 +21,9 @@
             </div>
             <div class="card-footer">
                 <a class="btn btn-outline-success float-right" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id">
-                    <i class="bi bi-cart-plus"></i> Add to Cart
+                    <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
                 </a>
-                <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
+                <a class="btn btn-outline-info" asp-action="Index">Quay về</a>
             </div>
         </div>
     </div>

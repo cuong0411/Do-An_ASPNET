@@ -1,12 +1,12 @@
 ﻿@model EditProductDTO
 
 @{
-    ViewData["Title"] = "Edit Product";
+    ViewData["Title"] = "Thay Đổi Sản Phẩm";
 }
 
 <div class="row">
     <div class="col-12 col-md-10 offset-md-1">
-        <h4 class="text-center">Edit Product</h4>
+        <h4 class="text-center">Thay Đổi Sản Phẩm</h4>
         <div class="col-12 col-md-10 offset-md-1">
             <form asp-action="Edit" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -38,8 +38,8 @@
                             <span asp-validation-for="CategoryId" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Update" class="btn btn-outline-success float-right" />
-                            <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
+                            <input type="submit" value="Cập nhật" class="btn btn-outline-success float-right" />
+                            <a class="btn btn-outline-info" asp-action="Index">Quay về</a>
                         </div>
                     </div>
                     <div class="col-4">

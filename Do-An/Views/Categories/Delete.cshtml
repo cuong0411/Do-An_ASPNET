@@ -1,12 +1,12 @@
 ﻿@model Category
 
 @{
-    ViewData["Title"] = "Category Delete";
+    ViewData["Title"] = "Xóa Danh Mục";
 }
 
 <div class="row">
     <div class="col-12 col-md-10 offset-md-1">
-        <h2>Category Delete</h2>
+        <h2 class="text-danger">Xóa Danh Mục</h2>
         <div class="row">
             <div class="col-12 col-md-10 offset-md-1">
                 <div class="form-group">
@@ -16,9 +16,9 @@
                 <div class="form-group">
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="Id" />
-                        <input type="submit" value="Confirm" class="btn btn-danger float-right"/>
+                        <input type="submit" value="Thay đổi" class="btn btn-danger float-right"/>
                     </form>
-                    <a class="btn btn-outline-info" asp-action="Index">Back to List</a>
+                    <a class="btn btn-outline-info" asp-action="Index">Quay về</a>
                 </div>
             </div>
         </div>

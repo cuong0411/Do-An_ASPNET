@@ -3,10 +3,10 @@
 @if (!User.Identity.IsAuthenticated)
 {
     <a class="btn btn-outline-success my-2 my-sm-0" asp-controller="Account" asp-action="Login">
-        <i class="bi bi-box-arrow-in-right"></i> Log in
+        <i class="bi bi-box-arrow-in-right"></i> Đăng Nhập
     </a>
     <a class="btn btn-outline-primary my-2 my-sm-0" asp-controller="Account" asp-action="Register">
-        <i class="bi bi-person-plus"></i> Register
+        <i class="bi bi-person-plus"></i> Đăng Ký
     </a>
 }
 else
@@ -14,16 +14,16 @@ else
     @*Order List*@
     <div class="dropdown">
         <button class="btn btn-outline-success dropdown-toggle" id="profile-btn" role="button" data-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-person-badge"></i> Hello @UserManager.GetUserName(User)
+            <i class="bi bi-person-badge"></i> Xin chào @UserManager.GetUserName(User)
         </button>
         <div class="dropdown-menu" aria-labelledby="profile-btn">
             <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
-                <i class="bi bi-list"></i> Orders
+                <i class="bi bi-list"></i> Đơn Hàng
             </a>
             @if(User.IsInRole(UserRoles.Admin))
             {
                 <a class="dropdown-item" asp-controller="Account" asp-action="Users">
-                    <i class="bi bi-people"></i> Users
+                    <i class="bi bi-people"></i> Người Dùng
                 </a>
             }
         </div>
@@ -31,7 +31,7 @@ else
 
     <form asp-controller="Account" asp-action="Logout">
         <button class="btn btn-outline-danger my-2 my-sm-0">
-            <i class="bi bi-box-arrow-in-left"></i> Log out
+            <i class="bi bi-box-arrow-in-left"></i> Đăng Xuất
         </button>
     </form>
 }

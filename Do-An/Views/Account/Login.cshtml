@@ -1,13 +1,13 @@
 ﻿@model Login
 
 @{
-    ViewData["Title"] = "Login Page";
+    ViewData["Title"] = "Đăng Nhập";
 }
 
 <div class="row">
     <div class="col-md-6 offset-3">
         <p>
-            <h4>Log in to your account</h4>
+            <h4>Đăng Nhập</h4>
         </p>
         @if(TempData["Error"] != null)
         {
@@ -31,13 +31,35 @@
                     </div>
 
                     <div class="form-group">
-                        <input class="btn btn-outline-success float-right" type="submit" value="Log in"/>
+                        <input class="btn btn-outline-success float-right" type="submit" value="Đăng nhập"/>
                         <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">
-                            Cancel
+                            Trở về trang chủ
                         </a>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+</div>
+
+<div class="row-10 offset-2">
+    <h4 class="text-info">Tài khoản mặc định để test</h4>
+    <table class="col table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>admin@gmail.com</td>
+                <td>Aa0000@@</td>
+            </tr>
+            <tr>
+                <td>user@gmail.com</td>
+                <td>Aa0000@@</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

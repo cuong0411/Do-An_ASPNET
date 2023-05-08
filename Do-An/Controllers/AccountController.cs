@@ -46,9 +46,11 @@ namespace Do_An.Controllers
                 return View(login);
             }
 
+            // tìm người dùng theo email
             var user = await userManager.FindByEmailAsync(login.Email);
             if (user != null)
             {
+                // kiểm tra mật khẩu người dùng
                 var passwordCheck = await userManager.CheckPasswordAsync(user, login.Password);
                 if (passwordCheck)
                 {
@@ -60,7 +62,7 @@ namespace Do_An.Controllers
                 }
             }
 
-            TempData["Error"] = "Wrong credentials. Please try again";
+            TempData["Error"] = "Thông tin người dùng không chính xác. Vui lòng nhập lại.";
             return View(login);
         }
         [AllowAnonymous]
@@ -78,7 +80,7 @@ namespace Do_An.Controllers
             var user = await userManager.FindByEmailAsync(register.Email);
             if (user != null)
             {
-                TempData["Error"] = "This email is already in use";
+                TempData["Error"] = "Email này đã được sử dụng.";
                 return View(register);
             }
 
