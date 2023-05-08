@@ -5,8 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Do_An</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
     <link href="~/bootstrap-icons-1.10.5/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+    <style>
+        .container {
+            max-width: 1170px;
+            margin: auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .footer {
+            background-color: #24262b;
+            padding: 70px 0px;
+        }
+
+        .footer-col {
+            width: 25%;
+            padding: 0 15px;
+        }
+
+            .footer-col h4 {
+                font-size: 18px;
+                color: #ffffff;
+                text-transform: capitalize;
+                margin-bottom: 35px;
+                font-weight: 500;
+                position: relative;
+            }
+
+                .footer-col h4::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    bottom: -10px;
+                    background-color: #e91e63;
+                    height: 2px;
+                    box-sizing: border-box;
+                    width: 50px;
+                }
+
+            .footer-col ul li:not(:last-child) {
+                margin-bottom: 10px;
+            }
+
+            .footer-col ul li a {
+                font-size: 16px;
+                text-transform: capitalize;
+                color: #ffffff;
+                text-decoration: none;
+                font-weight: 300;
+                color: #bbbbbb;
+                display: block;
+                transition: all 0.3s ease;
+            }
+
+                .footer-col ul li a:hover {
+                    color: #ffffff;
+                    padding-left: 8px;
+                }
+
+            .footer-col .social-links a {
+                display: inline-block;
+                height: 40px;
+                width: 40px;
+                background-color: rgba(255,255,255,0.2);
+                margin: 0 10px 10px 0;
+                text-align: center;
+                line-height: 40px;
+                border-radius: 50%;
+                color: #ffffff;
+                transition: all 0.5s ease;
+            }
+
+                .footer-col .social-links a:hover {
+                    color: #24262b;
+                    background-color: #ffffff;
+                }
+
+        .maps {
+            height: 300px;
+            width: 600px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -56,9 +145,64 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    @*<footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - Do_An - 
+        </div>
+    </footer>*@
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Giới Thiệu</h4>
+                    <ul>
+                        <li><a href="#">Về chúng tôi</a></li>
+                        <li><a href="#">Sản phẩm</a></li>
+                        <li><a href="#">Khuyến mãi</a></li>
+                        <li><a href="#">Chuyện cà phê </a></li>
+                        <li><a href="#">Cửa hàng</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Điều Khoản</h4>
+                    <ul>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Chính sách bảo mật thông tin</a></li>
+
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên Hệ</h4>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="bi bi-telephone"></i>
+                                Đặt hàng: 1800 6936
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"> <i class="bi bi-geo-alt"></i> Liên hệ </a>
+
+                            <p>
+                                Tầng 3-4 Hub Building
+                                195/10E <br> Điện Biên Phủ, P.15 ,
+                                Q.Bình Thạnh, TP.Hồ Chí Minh
+                            </p>
+                        </li>
+                        <iframe class="maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.524309040774!2d106.67853017495743!3d10.771096889377336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f219de050cf%3A0xd4f090545fdddadf!2sThe%20Coffee%20House%20-%20Cao%20Th%E1%BA%AFng%20Qu%E1%BA%ADn%203!5e0!3m2!1svi!2s!4v1683428301852!5m2!1svi!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
