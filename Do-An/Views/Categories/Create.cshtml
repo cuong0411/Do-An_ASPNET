@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-12 col-md-10 offset-md-1">
-        <h2>Tạo Danh Mục Mới</h2>
+        <h2 class="text-center text-info display-4">Tạo Danh Mục Mới</h2>
         <div class="row">
             <div class="col-12 col-md-10 offset-md-1">
                 <form asp-action="Create">
@@ -28,17 +28,3 @@
         </div>
     </div>
 </div>
-
-@*@section scripts{
-    <script>
-        $(document).ready(function () {
-            const output = document.getElementById("imagePreview");
-            output.src = $(#imageURLPreview).val();
-        })
-
-        $("#imageURLPreview").on("Change", function () {
-            const output = document.getElementById("imagePreview");
-            output.src = $(this).val();
-        })
-    </script>
-}*@
