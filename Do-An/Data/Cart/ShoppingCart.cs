@@ -22,6 +22,13 @@ namespace Do_An.Data.Cart
         }
         public static ShoppingCart GetShoppingCart(IServiceProvider service)
         {
+            // Session là cơ chế để lưu lại dữ liệu của phiên làm việc cho ứng dụng
+            // ứng với từng khách truy cập. Để trao đổi dữ liệu từ trang này qua trang khác.
+            // Ví dụ nếu người dùng đã đăng nhập, thì thông tin đăng nhập được lưu lại
+            // và chuyển cho các trang khác nhau trong phiên làm việc
+            // để mỗi lần gửi request lại thì khỏi phải đăng nhập,
+            // hay người dùng chọn đựa mặt hàng vào giỏ hàng
+            // thì phải nhớ khi chuyển đến trang thanh toán
             ISession session = service.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
             var context = service.GetService<AppDbContext>();
 
